@@ -26,5 +26,4 @@ public class TransactionController {
     public TransactionModel salvar(@RequestBody TransactionModel transaction){
         return repository.save(transaction);
     }
-
 }

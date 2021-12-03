@@ -7,10 +7,8 @@ import java.util.List;
 public class UsuarioModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer codigo;
-
-    @Column(nullable = false, length = 50)
-    public String nome;
 
     @Column(nullable = false, length = 10)
     public String login;
@@ -27,14 +25,6 @@ public class UsuarioModel {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getLogin() {

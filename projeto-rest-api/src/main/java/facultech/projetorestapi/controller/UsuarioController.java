@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+
 @RestController
 public class UsuarioController {
 
@@ -17,6 +20,17 @@ public class UsuarioController {
         return repository.findById(codigo)
                 .map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping(path = "/api/usuario/logar")
+    public boolean consultar (@RequestBody UsuarioModel user ) {
+        List<UsuarioModel> users = (List<UsuarioModel>) repository.findAll();
+        for (UsuarioModel item: users ){
+            if (item.login == user.login & item.senha == user.senha){
+                return true;
+            }
+        }
+        return false;
     }
 
     @PostMapping(path = "/api/usuario/salvar")
